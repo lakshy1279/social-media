@@ -3,8 +3,59 @@
         <title>
             <%= title %>
         </title>
+        <link rel="stylesheet" type="text/css" href="/css/home.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     </head>
     <body>
-        <h1>view engine working fine</h1>
+       <div id="main_div">
+               <h1 class="main_heading">TODO APP</h1>
+               <hr>
+               <form action="/add-list" method="POST" id="todo_info">
+                   <div id="description">
+                   <input type="text" name="description" placeholder="Description" id="todo_things">
+                 </div>
+                 <hr>
+                 <div class="second_div">
+                     <div class="category">
+                         <select name="category" onchange="">
+                             <option value="work">work</option>
+                             <option value="work">Personal</option>
+                             <option value="work">office</option>
+                             <option value="work">celebrations</option>
+                             <option value="work">other</option>
+                         </select>
+                     </div>
+                     <div class="date">
+                         <input type="date" name="date" id="to_do_date">
+                         </div>
+                     </div>
+                 <hr>
+                 <div class="button">
+                     <div class="add_task_button">
+                     <button type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Add Task</button>
+                     </div>
+                     <div class="delete_button">
+                         <button type="button">
+                           <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                             Delete Task
+                         </button>
+                     </div>
+                 </div>
+               </form>
+               <!-- add task -->
+               <div id="task-details">
+                   <% for(let i of task_item)
+                   {%>
+                    <div class="checkbox">
+                        <input type="checkbox" name="taskitem" value="<%i._id%>">
+                    </div>
+                    <div class="details_container">
+                        <h4><%=i.description%></h4>
+                        <h5><i class="fa fa-calendar" aria-hidden="true"></i><%=i.date%></h5>
+                     </div>
+                   <%}%>
+                
+               </div>
+       </div>
     </body>
 </html>
