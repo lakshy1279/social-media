@@ -1,5 +1,5 @@
 const db=require('../config/mongoose');
-const List=require('../models/todo');
+const List=require('../models/todo.js');
 module.exports.home=function(req,res)
 {
     List.find({},function(err,lists)

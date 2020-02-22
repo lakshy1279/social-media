@@ -10,20 +10,21 @@
        <div id="main_div">
                <h1 class="main_heading">TODO APP</h1>
                <hr>
-               <form action="/add-list" method="POST" id="todo_info">
+               <form action="/add-list" method="POST">
                    <div id="description">
                    <input type="text" name="description" placeholder="Description" id="todo_things">
                  </div>
                  <hr>
                  <div class="second_div">
                      <div class="category">
-                         <select name="category" onchange="">
+                         <select name="category" onchange="checkValue(this.value)">
                              <option value="work">work</option>
                              <option value="work">Personal</option>
                              <option value="work">office</option>
                              <option value="work">celebrations</option>
                              <option value="work">other</option>
                          </select>
+                         <input type="text" name="category1" id="other_option" placeholder="What Other?" style="display: none;">
                      </div>
                      <div class="date">
                          <input type="date" name="date" id="to_do_date">
@@ -47,12 +48,17 @@
                    <% for(let i of task_item)
                    {%>
                     <div class="checkbox">
-                        <input type="checkbox" name="taskitem" value="<%i._id%>">
+                        <input type="checkbox" name="taskitem" value="<%=i._id%>">
                     </div>
                     <div class="details_container">
-                        <h4><%=i.description%></h4>
+                        <h4><%= i.description %></h4>
                         <h5><i class="fa fa-calendar" aria-hidden="true"></i><%=i.date%></h5>
                      </div>
+                     <div class="category_container">
+                        <div class="inside_category_container">
+                            <h5><%= i.category %></h5>
+                        </div>
+                    </div>
                    <%}%>
                 
                </div>
