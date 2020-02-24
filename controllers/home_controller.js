@@ -16,11 +16,16 @@ module.exports.home=function(req,res)
 };
 module.exports.add=function(req,res)
 {
-  console.log(req.body);
+  console.log(req.body.description);
+  if(req.body.category == 'other'){
+    var category = req.body.category1;
+}else{
+    var category = req.body.category;
+}
   List.create({
     description:req.body.description,
     date:req.body.date,
-    category:req.body.category
+    category:category
   },function(err,newList)
   {
     if(err)
@@ -32,3 +37,39 @@ module.exports.add=function(req,res)
     return res.redirect('back');
   });
 };
+module.exports.delete=function(req,res)
+{
+   console.log(req.body);
+  if(req.body.taskitem==undefined)
+  {
+    redirect('back');
+  }
+  if(typeof(req.body.taskitem)==='string')
+  {
+    let id=req.body.taskitem;
+    List.findByIdAndDelete(id,function(err)
+    {
+      if(err)
+      {
+        console.log('error in deleting the item',err);
+        return;
+      }
+    });
+  }
+  if(typeof(req.body.taskitem)==='object')
+  {
+    for(i of req.body.taskitem)
+    {
+      let id=i;
+      List.findByIdAndDelete(id,function(err)
+    {
+      if(err)
+      {
+        console.log('error in deleting the item',err);
+        return;
+      }
+    });
+    }
+  }
+  return res.redirect('back');
+}

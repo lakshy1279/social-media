@@ -3,6 +3,7 @@ const router =express.Router();
 const homeController=require('../controllers/home_controller');
 router.get('/',homeController.home);
 router.post('/add-list',homeController.add);
+router.post('/delete-task',homeController.delete);
 console.log('router loaded');
 //router.use('/posts',require('./post'));
 //for any other excess from here

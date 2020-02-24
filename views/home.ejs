@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>
@@ -18,11 +19,11 @@
                  <div class="second_div">
                      <div class="category">
                          <select name="category" onchange="checkValue(this.value)">
-                             <option value="work">work</option>
-                             <option value="work">Personal</option>
-                             <option value="work">office</option>
-                             <option value="work">celebrations</option>
-                             <option value="work">other</option>
+                             <option value="work" selected>work</option>
+                             <option value="personal">Personal</option>
+                             <option value="office">office</option>
+                             <option value="celebrations">celebrations</option>
+                             <option value="other">other</option>
                          </select>
                          <input type="text" name="category1" id="other_option" placeholder="What Other?" style="display: none;">
                      </div>
@@ -30,38 +31,47 @@
                          <input type="date" name="date" id="to_do_date">
                          </div>
                      </div>
-                 <hr>
-                 <div class="button">
-                     <div class="add_task_button">
-                     <button type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Add Task</button>
-                     </div>
-                     <div class="delete_button">
-                         <button type="button">
-                           <i class="fas fa-trash-alt" aria-hidden="true"></i>
-                             Delete Task
-                         </button>
-                     </div>
-                 </div>
+                     <hr>
+                     <div class="button">
+                        <div class="add_task_button">
+                        <button type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Add Task</button>
+                        </div>
+                       
+                    </div>
+            
                </form>
+               <hr>
                <!-- add task -->
-               <div id="task-details">
+               <form action="/delete-task" method="POST">
+                <div class="button">
+                <div class="delete_button">
+                    <button type="submit">
+                      <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                        Delete Task
+                    </button>
+                </div>
+            </div>
                    <% for(let i of task_item)
                    {%>
+                    <div id="task-details">
                     <div class="checkbox">
                         <input type="checkbox" name="taskitem" value="<%=i._id%>">
                     </div>
                     <div class="details_container">
                         <h4><%= i.description %></h4>
-                        <h5><i class="fa fa-calendar" aria-hidden="true"></i><%=i.date%></h5>
+                        <h5><i class="far fa-calendar-alt"></i><%=i.date%></h5>
                      </div>
                      <div class="category_container">
                         <div class="inside_category_container">
                             <h5><%= i.category %></h5>
                         </div>
                     </div>
+                </div>
+                    <hr>
                    <%}%>
-                
-               </div>
+            
+                </form> 
        </div>
+       <script type="text/javascript" src="javascript/home.js"></script>
     </body>
 </html>
